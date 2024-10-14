@@ -13,7 +13,7 @@ export default function App() {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    console.log('Calculating visible contacts. Now memoized!');
+    console.log('Visible contacts. Now memoized!');
     dispatch(fetchContacts());
   }, [dispatch]);
 

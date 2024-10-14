@@ -10,9 +10,9 @@ const contactsSlice = createSlice({
     loading: false,
     error: null,
 
-    filters: {
-      name: '',
-    },
+    // filters: {
+    //   name: '',
+    // },
   },
 
   extraReducers: builder => {
@@ -50,16 +50,20 @@ const contactsSlice = createSlice({
 
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilters],
-  (contacts, nameFilter) => {
-    switch (nameFilter) {
-      case nameFilter.active:
-        return contacts.filter(contact => !contact.completed);
-      case nameFilter.completed:
-        return contacts.filter(contact => contact.completed);
-      default:
-        return contacts;
-    }
+
+  (contacts, nameContact) => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(nameContact.toLowerCase())
+    );
   }
+  // switch (nameFilter) {
+  //   case nameFilter.active:
+  //     return contacts.filter(contact => !contact.completed);
+  //   case nameFilter.completed:
+  //     return contacts.filter(contact => contact.completed);
+  //   default:
+  //     return contacts;
+  // }
 );
 
 // export const { addContact, deleteContact } = contactsSlice.actions;
